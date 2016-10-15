@@ -2,6 +2,13 @@
 
 ![A cobra](https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Indian_Cobra.JPG/1920px-Indian_Cobra.JPG)
 
+## Download
+
+```
+git clone https://github.com/ucsd-cse131/02-boa.git
+$ cd 02-boa/
+```
+
 In this assignment you'll implement a small language called Cobra,
 which implements an en-**Co**-ded **B**-inary **R**-epresent-**a**-tion
 of different values.  It also uses `C` function calls to implement some
