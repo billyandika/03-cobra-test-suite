@@ -5,8 +5,8 @@
 ## Download
 
 ```
-git clone https://github.com/ucsd-cse131/02-boa.git
-$ cd 02-boa/
+git clone https://github.com/ucsd-cse131/03-cobra.git 
+$ cd 03-cobra/
 ```
 
 In this assignment you'll implement a small language called Cobra,
