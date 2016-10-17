@@ -24,7 +24,7 @@ tests sc = testGroup "Tests"
   , testGroup "Boa"             (boaTests     sc)
   , testGroup "Cobra"           (cobraTests   sc)
   , testGroup "Dynamic-Errors"  (dynamicTests sc)
-  , testGroup "Your-Tests"      (yourTests    sc)
+  , testGroup "Community-Tests" (yourTests    sc)
   ]
 
 anfTests sc =
@@ -101,8 +101,23 @@ dynamicTests sc =
   , mkTest sc "oflow01"  File  overflowError
   ]
 
+
 yourTests sc =
-  [ -- fill in your tests here
+  [ mkTest sc "badVar" File (Left (unboundVarString "x")),
+    mkTest sc "badLet" File (Left (unboundVarString "y")),
+    mkTest sc "fiveLets" File (Right "5"),
+    mkTest sc "big_test" (Code "let z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4"),
+    mkTest sc "ignored_let_right" (Code "let z = sub1(5), y = sub1(z), l = 5 in sub1(add1(add1(y)))") (Right "4"),
+    mkTest sc "ignored_let_left" (Code "let l = 5, z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4"),
+    mkTest sc "shadow" (Code "let z = sub1(5), y = sub1(z) in let y = 1 in y") (Right "1"),
+    mkTest sc "let_in_add" (Code "add1(let x = 8 in add1(x))") (Right "10"),
+    mkTest sc "yOutOfScope" File (Left (unboundVarString "y")),
+    mkTest sc "bigAnfTest" File (Right $ show (((1+1)+(1+1))*((1+1)+(1+1)))),
+    mkTest sc "ifThenAnf" File (Right $ show $ 2+2+2-1),
+    mkTest sc "letInAdd2" (Code "(let x = 8 in add1(x))+(let x = 4 in sub1(x))") (Right "12")
   ]
 
+unboundVarString :: String -> String
+unboundVarString var = printf "Unbound variable '%s'" var
 
+undefinedString = error "Test Invalid: Tester must fill in the correct string here!"
