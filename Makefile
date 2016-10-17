@@ -34,7 +34,7 @@ tests/output/%.run: tests/output/%.o c-bits/main.c
 tests/output/%.o: tests/output/%.s
 	nasm -f $(FORMAT) -o $@ $<
 
-tests/output/%.s: tests/input/%.$(EXT) build
+tests/output/%.s: tests/input/%.$(EXT)
 	stack exec -- $(COMPILER) $< > $@
 
 clean:
