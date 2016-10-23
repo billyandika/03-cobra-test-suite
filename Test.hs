@@ -114,7 +114,7 @@ yourTests sc =
     mkTest sc "yOutOfScope" File (Left (unboundVarString "y")),
     mkTest sc "bigAnfTest" File (Right $ show (((1+1)+(1+1))*((1+1)+(1+1)))),
     mkTest sc "ifThenAnf" File (dynamicError TBoolean),
-    mkTest sc "letInAdd2" (Code "(let x = 8 in adRightd1(x))+(let x = 4 in sub1(x))") (Right "12")
+    mkTest sc "letInAdd2" (Code "(let x = 8 in add1(x))+(let x = 4 in sub1(x))") (Right "12")
   ]
 
 unboundVarString :: String -> String
