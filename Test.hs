@@ -113,8 +113,8 @@ yourTests sc =
     mkTest sc "let_in_add" (Code "add1(let x = 8 in add1(x))") (Right "10"),
     mkTest sc "yOutOfScope" File (Left (unboundVarString "y")),
     mkTest sc "bigAnfTest" File (Right $ show (((1+1)+(1+1))*((1+1)+(1+1)))),
-    mkTest sc "ifThenAnf" File (Right $ show $ 2+2+2-1),
-    mkTest sc "letInAdd2" (Code "(let x = 8 in add1(x))+(let x = 4 in sub1(x))") (Right "12")
+    mkTest sc "ifThenAnf" File (dynamicError TBoolean),
+    mkTest sc "letInAdd2" (Code "(let x = 8 in adRightd1(x))+(let x = 4 in sub1(x))") (Right "12")
   ]
 
 unboundVarString :: String -> String
